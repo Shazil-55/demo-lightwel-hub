@@ -1,0 +1,2394 @@
+@font-face {
+  font-family: 'MnkyJaneCondensed';
+  src: url('./fonts/mnkyjanecondensed-extrabold.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap");
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root,
+.proxima-hub {
+    overflow-x: hidden;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+.proxima-hub {
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.proxima-hub-header {
+    height: 50rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        height: 80%;
+
+    }
+}
+
+.proxima-hub-header-wide{
+    height: 50rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        max-height: 80%;
+        max-width: 70%;
+        width: 70%;
+    }
+}
+
+/* Smaller header when map is shown */
+.proxima-hub-header-map {
+    padding-top: 0.5rem;
+    height: 20rem !important;
+}
+
+.proxima-hub-header-map img {
+    max-height: 60% !important;
+    max-width: 50% !important;
+    width: 50% !important;
+}
+
+.proxima-hub-tab-container {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 100%;
+    /* padding: 0 2.5rem; */
+}
+.proxima-hub-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background-color: #2a2520;
+    border-radius: 5rem;
+    margin-top: 2rem;
+}
+
+.proxima-hub-tab {
+    padding: 1.2rem 2.4rem;
+    border: none;
+    border-radius: 4rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: transparent;
+    color: #a8a5a0;
+}
+
+.proxima-hub-tab:hover {
+    color: #fff;
+}
+
+.proxima-hub-tab.active {
+    background-color: #c4a574;
+    color: #1a1815;
+}
+
+.proxima-hub-title {
+    font-size: 5.2rem;
+    line-height: 6.3rem;
+    text-align: center;
+    margin-top: 5rem;
+}
+
+.proxima-hub-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2.5rem 0;
+
+    img {
+        height: 8rem;
+    }
+}
+
+.proxima-hub-projects {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    align-items: center;
+    justify-content: space-between;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 2.5rem;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.5) transparent;
+}
+
+.proxima-hub-map {
+    width: 100%;
+    height: 400px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.proxima-hub-map-full {
+    width: 100%;
+    height: 70vh;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+/* Align map container with tabs when map is active */
+.proxima-hub-projects-map {
+    justify-content: flex-end;
+    padding-right: 2.5rem;
+    padding-left: 2.5rem;
+}
+
+.proxima-hub-projects-map .proxima-hub-map-full {
+    max-width: calc(100%);
+}
+
+@media only screen and (max-width: 1199px) {
+    .proxima-hub-projects-map {
+        justify-content: center;
+    }
+
+    .proxima-hub-projects-map .proxima-hub-map-full {
+        max-width: 100%;
+    }
+}
+.proxima-hub-fullscreen-map {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.proxima-hub-fullscreen-map .map-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+}
+
+/* Full screen map styles */
+.proxima-hub-fullscreen-map .map-container > div {
+    width: 100vw !important;
+    height: 100vh !important;
+    border-radius: 0 !important;
+}
+
+/* Close button styles */
+.proxima-hub-fullscreen-map button {
+    transition: all 0.2s ease;
+}
+
+.proxima-hub-fullscreen-map button:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 1) !important;
+}
+
+/* ProximaMap styles */
+#proxima-map-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Custom Map styles */
+.project-marker {
+    transition: all 0.3s ease;
+}
+
+.project-marker:hover {
+    z-index: 20;
+}
+
+.project-image {
+    z-index: 15;
+}
+
+/* Map container */
+#proxima-map-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Mapbox marker styles - Box with pointer */
+.marker { 
+    position: relative; 
+    z-index: 1; 
+}
+
+.marker-box {
+    border-radius: 4px;
+    border: 2px solid #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+    padding: 8px 12px;
+    font-weight: bold;
+    font-size: 12px;
+    white-space: nowrap;
+    transition: transform 0.2s ease;
+    min-width: 60px;
+    text-align: center;
+}
+
+.marker-pointer {
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+}
+
+/* Mapbox popup styles */
+.marker-popup {
+    font-family: inherit;
+}
+
+.marker-popup .mapboxgl-popup-content {
+    padding: 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.marker-popup h4 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.marker-popup p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.proxima-hub-projects::-webkit-scrollbar {
+    height: 0.6rem;
+}
+
+.proxima-hub-projects::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.proxima-hub-projects::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 0.3rem;
+}
+
+.proxima-hub-projects::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.proxima-hub-project {
+    flex: 0 0 auto;
+    width: 55rem;
+    height: 45rem;
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+        img {
+            transform: scale(1.2);
+        }
+    }
+
+    img {
+        height: 100%;
+        width: 100%;
+        transition: transform 0.3s ease-in-out;
+        object-fit: cover;
+    }
+
+    .project-placeholder {
+        height: 45rem;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.1rem;
+        font-weight: bold;
+        border-radius: 30px;
+
+        p{
+            font-size: 40px;
+        }
+    }
+
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-weight: bold;
+        font-size: 2.1rem;
+
+        p {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem 2rem;
+        }
+
+        img {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem 2rem;
+            height: 4.5rem;
+            width: auto;
+        }
+    }
+}
+
+.proxima-hub-notFound {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #27233a;
+    color: white;
+
+    img {
+        height: 15rem;
+    }
+
+    h1 {
+        font-size: 5rem;
+    }
+
+    p {
+        font-size: 2.5rem;
+        margin: 5rem 0;
+        padding: 2.5rem;
+        background: white;
+        border-radius: 1.5rem;
+        color: rgb(255, 77, 79);
+    }
+}
+
+/* Map Sidebar Styles */
+.map-sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 42rem;
+    height: 100%;
+    background: #fff;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+    transform: translateX(-100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px 0 0 8px;
+    overflow: hidden;
+}
+
+.map-sidebar.open {
+    transform: translateX(0);
+}
+
+.map-sidebar-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    font-size: 2.4rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.map-sidebar-close:hover {
+    background: #fff;
+    transform: scale(1.1);
+}
+
+.map-sidebar-content {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.map-sidebar-image {
+    position: relative;
+    width: 100%;
+    height: 28rem;
+    flex-shrink: 0;
+}
+
+.map-sidebar-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.map-sidebar-image-placeholder {
+    width: 100%;
+    height: 100%;
+}
+
+.map-sidebar-logo-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.map-sidebar-logo-overlay img {
+    max-width: 18rem;
+    max-height: 8rem;
+    object-fit: contain;
+}
+
+.map-sidebar-info {
+    padding: 2rem 2.4rem;
+    flex: 1;
+}
+
+.map-sidebar-index {
+    font-size: 1.6rem;
+    color: #888;
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+.map-sidebar-name {
+    font-size: 3.2rem;
+    font-weight: 400;
+    color: #1a1a1a;
+    margin: 0 0 0.4rem 0;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.8rem;
+}
+
+.map-sidebar-address {
+    font-size: 1.6rem;
+    color: #666;
+    margin: 0 0 3rem 0;
+}
+
+.map-sidebar-description {
+    font-size: 1.85rem;
+    line-height: 1.7;
+    color: #444;
+    margin: 0 0 2.4rem 0;
+}
+
+.map-sidebar-button {
+    display: inline-block;
+    padding: 1.2rem 2.4rem;
+    border: 1px solid #333;
+    background: transparent;
+    color: #333;
+    font-size: 1.6rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.map-sidebar-button:hover {
+    background: #333;
+    color: #fff;
+}
+
+.map-sidebar-nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.8rem;
+    padding: 1.6rem 2.4rem;
+    border-top: 1px solid #eee;
+}
+
+.map-sidebar-nav-btn {
+    width: 4rem;
+    height: 4rem;
+    border: 1px solid #ccc;
+    background: #6a412b;
+    border-radius: 50%;
+    font-size: 2.4rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    transition: all 0.2s ease;
+}
+
+.map-sidebar-nav-btn:hover:not(:disabled) {
+    border-color: #333;
+    color: #ffffff;
+}
+
+.map-sidebar-nav-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.proxima-hub-project-tab {
+    flex: 0 0 auto;
+    width: 55rem;
+    height: fit-content;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+}
+
+/* Override for tabs row - don't use flex:1 or overflow behaviors */
+.proxima-hub-tabs-row {
+    flex: 0 0 auto !important;
+    overflow: visible !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+    padding-left: 5rem !important;
+    padding-right: 5rem !important;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: inherit;
+}
+
+/* When JS toggles sticky state, force the tabs row to pin to the viewport */
+.proxima-hub-tabs-row.proxima-hub-tabs-sticky {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 998; /* keep below filter drawer (1000) / backdrop (999) */
+}
+
+@media only screen and (max-width: 1199px) {
+    .proxima-hub-projects {
+        overflow-x: hidden;
+        overflow-y: auto;
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+    }
+
+    .proxima-hub-project {
+        width: 100%;
+        height: fit-content;
+    }
+
+    .proxima-hub-tabs-row {
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        padding: 0 2.5rem !important;
+    }
+
+    /* .proxima-hub-tabs-row .proxima-hub-project-tab {
+        display: none;
+    } */
+
+    .proxima-hub-tabs-row .proxima-hub-project-tab:last-child {
+        display: block;
+        width: auto;
+    }
+}
+
+/* Floor Plans Styles */
+.proxima-hub-floor-plans-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+    padding: 2.5rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Floor Plans Filter Toggle Button */
+.fp-filter-toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 2.4rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 0.8rem;
+    background: rgba(0, 0, 0, 0);
+    color: inherit;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    height: 47px;
+}
+
+.fp-filter-toggle-btn:hover {
+    background: rgba(0, 0, 0, 0);
+}
+
+.fp-filter-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.2rem;
+    height: 2.2rem;
+    padding: 0 0.6rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    background: currentColor;
+    color: inherit;
+    border-radius: 1.1rem;
+    filter: invert(1);
+}
+
+/* Filter Drawer Backdrop */
+.fp-filter-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 999;
+}
+
+/* Filter Drawer */
+.fp-filter-drawer {
+    position: fixed;
+    left: 0;
+    top: 8rem;
+    width: 35rem;
+    max-width: 90vw;
+    max-height: 80vh;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(255,255,255,0.92));
+    border-radius: 0 1.6rem 1.6rem 0;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.fp-filter-drawer.open {
+    transform: translateX(0);
+}
+
+/* Drawer Header */
+.fp-filter-drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.6rem 2rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(8px);
+}
+
+.fp-filter-drawer-header h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #111;
+    margin: 0;
+}
+
+.fp-filter-clear-btn {
+    padding: 0.6rem 1.4rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 2rem;
+    background: #fff;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.fp-filter-clear-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* Drawer Content */
+.fp-filter-drawer-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.6rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Filter Section */
+.fp-filter-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.fp-filter-label {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #111;
+}
+
+/* Filter Chips */
+.fp-filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.fp-filter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.3rem;
+    background: #f3f4f6;
+    border-radius: 2rem;
+    color: #333;
+}
+
+.fp-filter-chip button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #666;
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.2s ease;
+}
+
+.fp-filter-chip button:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Filter Select */
+.fp-filter-select-wrapper {
+    position: relative;
+}
+
+.fp-filter-select {
+    width: 100%;
+    padding: 1rem 3.5rem 1rem 1.4rem;
+    font-size: 1.4rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.8rem;
+    background: #fff;
+    color: #333;
+    cursor: pointer;
+    appearance: none;
+    transition: border-color 0.2s ease;
+}
+
+.fp-filter-select:hover {
+    border-color: rgba(0, 0, 0, 0.4);
+}
+
+.fp-filter-select:focus {
+    outline: none;
+    border-color: #333;
+}
+
+.fp-filter-select-arrow {
+    position: absolute;
+    right: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.6rem;
+    height: 1.6rem;
+    color: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+/* Results Count */
+.fp-filter-results {
+    text-align: center;
+    padding-top: 1.6rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 1.4rem;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.proxima-hub-floor-plans-no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 2rem;
+    font-size: 1.6rem;
+    color: #666;
+}
+
+.proxima-hub-floor-plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(40rem, 1fr));
+    gap: 2.5rem;
+    width: 100%;
+    max-width: 177rem;
+    margin: 0 auto;
+}
+
+.proxima-hub-floor-plan-card {
+    background: white;
+    border-radius: 2rem;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 2rem;
+}
+
+.proxima-hub-floor-plan-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.proxima-hub-floor-plan-image {
+    position: relative;
+    width: 100%;
+    height: 24vh;
+    min-height: 20rem;
+    overflow: hidden;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.proxima-hub-floor-plan-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: white;
+}
+
+.proxima-hub-floor-plan-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 1.6rem;
+    text-align: center;
+    padding: 2rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.proxima-hub-floor-plan-content {
+    /* padding: 2rem; */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.proxima-hub-floor-plan-name {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin-bottom: 0.8rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.proxima-hub-floor-plan-size {
+    font-size: 1.6rem;
+    color: #666;
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.proxima-hub-floor-plan-bed-bath {
+    font-size: 1.6rem;
+    color: #666;
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    max-width: 80%;
+}
+
+.proxima-hub-floor-plan-price {
+    font-size: 1.4rem;
+    color: white;
+    background: #333;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.4rem;
+    display: inline-block;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    width: fit-content;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.proxima-hub-floor-plan-actions {
+    position: absolute;
+    bottom: 0.7rem;
+    right: 1.5rem;
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+.proxima-hub-floor-plan-action-btn {
+    width: 2.2rem;
+    height: 2.2rem;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+    color: #666;
+}
+
+.proxima-hub-floor-plan-action-btn:hover {
+    background: white;
+    transform: scale(1.1);
+    /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); */
+}
+
+.proxima-hub-floor-plan-action-btn:active {
+    transform: scale(0.95);
+}
+
+.proxima-hub-floor-plan-favorite-active {
+    color: #dc2626;
+}
+
+.proxima-hub-floor-plans-compare-container {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
+}
+
+.proxima-hub-floor-plans-compare-btn {
+    background: #c4a574;
+    color: #1a1815;
+    border: none;
+    padding: 1.2rem 2.4rem;
+    border-radius: 0.8rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.proxima-hub-floor-plans-compare-btn:hover {
+    background: #b8955f;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+.proxima-hub-floor-plans-loading,
+.proxima-hub-floor-plans-error,
+.proxima-hub-floor-plans-empty {
+    width: 100%;
+    text-align: center;
+    padding: 5rem 2rem;
+    font-size: 2rem;
+    color: inherit;
+}
+
+.proxima-hub-floor-plans-error {
+    color: #ff4444;
+}
+
+@media only screen and (max-width: 1199px) {
+    /* .proxima-hub-floor-plans-grid {
+        grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+        gap: 2rem;
+    } */
+
+    .proxima-hub-floor-plan-image {
+        min-height: 18rem;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .proxima-hub-floor-plans-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .proxima-hub-floor-plan-image {
+        min-height: 20rem;
+    }
+}
+
+/* Floor Plan Detail Modal Styles */
+.proxima-hub-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.proxima-hub-modal-content {
+    position: relative;
+    background: white;
+    width: 100%;
+    max-width: 140rem;
+    max-height: 90vh;
+    border-radius: 1.6rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.proxima-hub-modal-body {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+}
+
+.proxima-hub-modal-image-section {
+    width: 50%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2.4rem;
+    background: #f9f9f9;
+}
+
+.proxima-hub-modal-image {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+}
+
+.proxima-hub-modal-image-placeholder {
+    color: #999;
+    font-size: 1.6rem;
+    text-align: center;
+}
+
+.proxima-hub-modal-custom-disclaimer {
+    margin-top: 1.6rem;
+    padding-top: 0.4rem;
+    font-size: 1rem;
+    color: #666;
+}
+
+.proxima-hub-modal-disclaimer-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+}
+
+.proxima-hub-info-icon {
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+    color: #666;
+}
+
+.proxima-hub-modal-details-section {
+    width: 50%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.proxima-hub-modal-header {
+    flex-shrink: 0;
+    padding: 2.4rem;
+    padding-bottom: 0;
+    border-bottom: 1px solid #eee;
+}
+
+.proxima-hub-modal-badges {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+    margin-top: 2.4rem;
+    min-height: 1.6rem;
+}
+
+.proxima-hub-modal-price-badge {
+    display: inline-block;
+    background: #e5e5e5;
+    color: #1a1a1a;
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 0.8rem 1.2rem;
+    border-radius: 0.4rem;
+}
+
+.proxima-hub-modal-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.6rem;
+    margin-bottom: 1.6rem;
+}
+
+.proxima-hub-modal-title {
+    font-size: 2.4rem;
+    font-weight: bold;
+    color: #1a1a1a;
+    flex: 1;
+}
+
+.proxima-hub-modal-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.proxima-hub-modal-apply-btn {
+    background: #dc2626;
+    color: white;
+    padding: 0.8rem 1.6rem;
+    border-radius: 0.4rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.proxima-hub-modal-apply-btn:hover {
+    background: #b91c1c;
+}
+
+.proxima-hub-modal-icon-btn {
+    width: 4rem;
+    height: 4rem;
+    border: none;
+    background: #f3f4f6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #374151;
+}
+
+.proxima-hub-modal-icon-btn:hover {
+    background: #e5e7eb;
+    transform: scale(1.05);
+}
+
+.proxima-hub-modal-scrollable-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 2.4rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.proxima-hub-modal-scrollable-content::-webkit-scrollbar {
+    display: none;
+}
+
+.proxima-hub-modal-description {
+    margin-bottom: 1.6rem;
+    font-size: 1.4rem;
+    color: #666;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    position: relative;
+}
+
+.proxima-hub-modal-description-text {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.proxima-hub-modal-info-btn {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    padding: 0.2rem;
+    transition: opacity 0.2s ease;
+}
+
+.proxima-hub-modal-info-btn:hover {
+    opacity: 0.7;
+}
+
+.proxima-hub-modal-full-disclaimer {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 0.8rem;
+    z-index: 50;
+    background: #1f2937;
+    color: white;
+    font-size: 1.4rem;
+    border-radius: 0.8rem;
+    padding: 1.6rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-width: 40rem;
+}
+
+.proxima-hub-modal-full-disclaimer-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+}
+
+.proxima-hub-info-icon-white {
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+    color: white;
+}
+
+.proxima-hub-modal-specs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+    margin-bottom: 2.4rem;
+}
+
+.proxima-hub-modal-spec-item {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.8rem;
+    padding: 1.2rem;
+    text-align: center;
+}
+
+.proxima-hub-modal-spec-label {
+    font-size: 1.2rem;
+    color: #1a1a1a;
+    margin-bottom: 0.4rem;
+}
+
+.proxima-hub-modal-spec-value {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.proxima-hub-modal-footer {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.6rem 2.4rem;
+    border-top: 1px solid #eee;
+}
+
+.proxima-hub-modal-close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #1a1a1a;
+    padding: 0.8rem;
+    transition: opacity 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.proxima-hub-modal-close-btn:hover {
+    opacity: 0.7;
+}
+
+/* Responsive Modal Styles */
+@media only screen and (max-width: 1024px) {
+    .proxima-hub-modal-body {
+        flex-direction: column;
+    }
+
+    .proxima-hub-modal-image-section {
+        width: 100%;
+        max-height: 40vh;
+        padding: 1.6rem;
+    }
+
+    .proxima-hub-modal-image {
+        max-height: 35vh;
+    }
+
+    .proxima-hub-modal-details-section {
+        width: 100%;
+        max-height: 50vh;
+    }
+
+    .proxima-hub-modal-specs-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .proxima-hub-modal-overlay {
+        padding: 0;
+    }
+
+    .proxima-hub-modal-content {
+        max-height: 100vh;
+        border-radius: 0;
+    }
+
+    .proxima-hub-modal-image-section {
+        max-height: 30vh;
+    }
+
+    .proxima-hub-modal-image {
+        max-height: 25vh;
+    }
+
+    .proxima-hub-modal-details-section {
+        max-height: 70vh;
+    }
+
+    .proxima-hub-modal-specs-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .proxima-hub-modal-title-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.2rem;
+    }
+
+    .proxima-hub-modal-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
+
+/* Floor Plan Comparison Modal Styles */
+.proxima-hub-compare-overlay {
+    z-index: 2000;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0;
+}
+
+.proxima-hub-compare-overlay-open {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.proxima-hub-compare-content {
+    width: 100%;
+    height: 100vh;
+    max-width: 100%;
+    max-height: 100vh;
+    padding: 0;
+    border-radius: 0;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.proxima-hub-compare-content-open {
+    transform: translateY(0);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.proxima-hub-compare-header-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    border-bottom: 1px solid #eee;
+    position: relative;
+}
+
+.proxima-hub-compare-title-main {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.proxima-hub-compare-header-main .proxima-hub-modal-close-btn {
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.proxima-hub-compare-body {
+    display: flex;
+    gap: 0;
+    padding: 0;
+    overflow: hidden;
+    min-height: 0;
+    flex: 1;
+    height: calc(100vh - 14rem);
+}
+
+.proxima-hub-compare-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 2.4rem;
+    border-right: 1px solid #eee;
+}
+
+.proxima-hub-compare-section:last-child {
+    border-right: none;
+}
+
+.proxima-hub-compare-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.6rem;
+}
+
+.proxima-hub-compare-title {
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: #2d5a5a;
+    flex: 1;
+    margin-bottom: 2rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.proxima-hub-compare-nav {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.proxima-hub-compare-nav-btn {
+    width: 3.2rem;
+    height: 3.2rem;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #666;
+}
+
+.proxima-hub-compare-nav-btn:hover {
+    background: #f3f4f6;
+    border-color: #999;
+}
+
+.proxima-hub-compare-details-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.6rem;
+    gap: 2rem;
+}
+
+.proxima-hub-compare-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    flex: 1;
+}
+
+.proxima-hub-compare-details-row {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.proxima-hub-compare-detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.proxima-hub-compare-detail-label {
+    color: #666;
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.proxima-hub-compare-detail-value {
+    color: #1a1a1a;
+    font-weight: 400;
+    font-size: 2rem;
+    line-height: 1.4;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.proxima-hub-compare-thumbnails {
+    display: flex;
+    gap: 0.8rem;
+    flex-shrink: 0;
+}
+
+.proxima-hub-compare-thumbnail {
+    width: 8rem;
+    height: 6rem;
+    border-radius: 0.4rem;
+    overflow: hidden;
+    background: #f5f5f5;
+    flex-shrink: 0;
+}
+
+.proxima-hub-compare-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.proxima-hub-compare-image-container {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    background: #f9f9f9;
+    border-radius: 0.8rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.6rem;
+}
+
+.proxima-hub-compare-image-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+    position: relative;
+}
+
+.proxima-hub-compare-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    transform-origin: center center;
+}
+
+.proxima-hub-compare-image-placeholder {
+    color: #999;
+    font-size: 1.6rem;
+    text-align: center;
+    padding: 4rem;
+}
+
+.proxima-hub-compare-zoom-controls {
+    position: absolute;
+    bottom: 1.6rem;
+    right: 1.6rem;
+    display: flex;
+    gap: 0.4rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 0.8rem;
+    padding: 0.4rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.proxima-hub-compare-zoom-btn {
+    width: 3.2rem;
+    height: 3.2rem;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #666;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.proxima-hub-compare-zoom-btn:hover {
+    background: #f3f4f6;
+    border-color: #999;
+}
+
+.proxima-hub-compare-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    border-top: 1px solid #eee;
+    background: white;
+}
+
+.proxima-hub-compare-others-btn-footer {
+    background: #fff;
+
+    color: #1a1815;
+    border: 1px solid #1a1815;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.proxima-hub-compare-others-btn-footer:hover {
+    background: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.proxima-hub-compare-zoom-icon {
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    border: 1px solid #1a1815;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 1rem;
+    background: #fff;
+    padding: 0;
+}
+
+.proxima-hub-compare-zoom-icon:hover {
+    color: #1a1a1a;
+    transform: scale(1.1);
+    background: #f5f5f5;
+}
+
+/* Zoom Modal Styles */
+.proxima-hub-zoom-modal-overlay {
+    z-index: 3000;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.proxima-hub-zoom-modal-content {
+    position: relative;
+    background: transparent;
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    box-shadow: none;
+    pointer-events: auto;
+}
+
+.proxima-hub-zoom-modal-controls-only {
+    display: flex;
+    gap: 0.4rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 0.8rem;
+    padding: 0.4rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Compare Others Modal Styles */
+.proxima-hub-compare-others-overlay {
+    z-index: 3000;
+}
+
+.proxima-hub-compare-others-content {
+    max-width: 60rem;
+    max-height: 80vh;
+    padding: 0;
+}
+
+.proxima-hub-compare-others-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    border-bottom: 1px solid #eee;
+}
+
+.proxima-hub-compare-others-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.proxima-hub-compare-others-list {
+    padding: 2rem;
+    overflow-y: auto;
+    max-height: calc(80vh - 8rem);
+}
+
+.proxima-hub-compare-others-item {
+    display: flex;
+    gap: 1.6rem;
+    padding: 1.6rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.8rem;
+    margin-bottom: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: white;
+}
+
+.proxima-hub-compare-others-item:hover {
+    border-color: #c4a574;
+    background: #fefbf5;
+    transform: translateX(4px);
+}
+
+.proxima-hub-compare-others-thumbnail {
+    width: 8rem;
+    height: 8rem;
+    flex-shrink: 0;
+    border-radius: 0.6rem;
+    overflow: hidden;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.proxima-hub-compare-others-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.proxima-hub-compare-others-thumbnail-placeholder {
+    color: #999;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.proxima-hub-compare-others-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+}
+
+.proxima-hub-compare-others-name {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 0.4rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.proxima-hub-compare-others-specs {
+    font-size: 1.4rem;
+    color: #666;
+}
+
+.proxima-hub-compare-others-empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #999;
+    font-size: 1.6rem;
+}
+
+@media only screen and (max-width: 1024px) {
+    .proxima-hub-compare-body {
+        flex-direction: column;
+        height: calc(100vh - 16rem);
+    }
+
+    .proxima-hub-compare-section {
+        min-height: 30rem;
+        border-right: none;
+        border-bottom: 1px solid #eee;
+    }
+
+    .proxima-hub-compare-section:last-child {
+        border-bottom: none;
+    }
+
+    .proxima-hub-compare-image-container {
+        min-height: 30rem;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .proxima-hub-compare-header-main {
+        padding: 1.6rem;
+    }
+
+    .proxima-hub-compare-header-main .proxima-hub-modal-close-btn {
+        right: 1.6rem;
+    }
+
+    .proxima-hub-compare-title-main {
+        font-size: 1.8rem;
+    }
+
+    .proxima-hub-compare-section {
+        padding: 1.6rem;
+        min-height: 25rem;
+    }
+
+    .proxima-hub-compare-image-container {
+        min-height: 25rem;
+    }
+
+    .proxima-hub-compare-footer {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.6rem;
+    }
+
+    .proxima-hub-compare-others-content {
+        max-width: 100%;
+        max-height: 100vh;
+        border-radius: 0;
+    }
+
+    .proxima-hub-compare-others-header {
+        padding: 1.6rem;
+    }
+
+    .proxima-hub-compare-others-list {
+        padding: 1.6rem;
+    }
+
+    .proxima-hub-floor-plans-compare-container {
+        bottom: 1.5rem;
+        right: 1.5rem;
+    }
+
+    .proxima-hub-floor-plans-compare-btn {
+        padding: 1rem 2rem;
+        font-size: 1.4rem;
+    }
+}
+
+/* ============================================
+   Floor Plan Comparison Modal - Full Screen Style
+   (Similar to UnitComparisonModal)
+   ============================================ */
+
+.fp-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 8000;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.fp-modal-container {
+    position: fixed;
+    inset: 0;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.fp-modal-body {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+.fp-unit-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: white;
+}
+
+.fp-unit-section-left {
+    border-right: 2px solid #e5e5e5;
+}
+
+/* Header with Key Plan and Info */
+.fp-unit-header {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.5rem 2rem;
+    background: white;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+/* Key Plan (Site Map equivalent) */
+.fp-unit-keyplan {
+    flex-shrink: 0;
+    width: 10rem;
+    height: 10rem;
+    overflow: hidden;
+    border-radius: 0.8rem;
+    background: #f5f5f5;
+}
+
+.fp-unit-keyplan img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.fp-unit-keyplan-empty {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #999;
+}
+
+/* Floor Plan Info */
+.fp-unit-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding-left: 1rem;
+}
+
+.fp-unit-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.3;
+}
+
+.fp-unit-sizes {
+    font-size: 1.4rem;
+    color: #555;
+    line-height: 1.4;
+}
+
+.fp-unit-bedbath {
+    font-size: 1.4rem;
+    color: #555;
+    line-height: 1.4;
+}
+
+.fp-unit-na {
+    color: #999;
+}
+
+/* Compact header when expanded */
+.fp-unit-header-compact {
+    flex-shrink: 0;
+    padding: 1rem 2rem;
+    background: white;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.fp-unit-name-compact {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-align: center;
+}
+
+/* Main Floor Plan Image */
+.fp-unit-image {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: white;
+    overflow: hidden;
+    min-height: 0;
+}
+
+.fp-unit-image img {
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.fp-unit-image-empty {
+    color: #999;
+    font-size: 1.4rem;
+}
+
+/* Placeholder for second floor plan */
+.fp-unit-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f9f9f9;
+}
+
+.fp-unit-placeholder-content {
+    text-align: center;
+    color: #666;
+}
+
+.fp-unit-placeholder-content p {
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+}
+
+/* Footer */
+.fp-modal-footer {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-top: 2px solid #e5e5e5;
+    background: white;
+}
+
+.fp-footer-close-btn {
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: #e5e5e5;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #1a1a1a;
+    transition: background 0.2s ease;
+}
+
+.fp-footer-close-btn:hover {
+    background: #d5d5d5;
+}
+
+.fp-footer-center {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.fp-compare-others-btn {
+    padding: 1rem 2.5rem;
+    background: #9C9C89;
+    color: white;
+    border: none;
+    border-radius: 9999px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.fp-compare-others-btn:hover {
+    background: #8a8a79;
+}
+
+.fp-footer-zoom-btn {
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e5e5e5;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #1a1a1a;
+    transition: background 0.2s ease;
+}
+
+.fp-footer-zoom-btn:hover {
+    background: #d5d5d5;
+}
+
+/* ============================================
+   Picker Modal (Compare Others)
+   ============================================ */
+
+.fp-picker-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 8001;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.fp-picker-container {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.fp-picker-modal {
+    width: 100%;
+    max-width: 40rem;
+    background: white;
+    border-radius: 1.6rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border: 1px solid #e5e5e5;
+    overflow: hidden;
+}
+
+.fp-picker-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.fp-picker-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.fp-picker-close {
+    width: 3.2rem;
+    height: 3.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #1a1a1a;
+    transition: background 0.2s ease;
+}
+
+.fp-picker-close:hover {
+    background: #f3f4f6;
+}
+
+.fp-picker-list {
+    max-height: 55vh;
+    overflow-y: auto;
+    padding: 1.5rem;
+    background: #f3f3f5;
+}
+
+.fp-picker-empty {
+    font-size: 1.4rem;
+    color: #666;
+    text-align: center;
+    padding: 2rem;
+}
+
+.fp-picker-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.fp-picker-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 1.6rem;
+    cursor: pointer;
+    text-align: left;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: background 0.2s ease;
+}
+
+.fp-picker-item:hover {
+    background: #fafafa;
+}
+
+.fp-picker-item-thumb {
+    width: 6.4rem;
+    height: 6.4rem;
+    flex-shrink: 0;
+    border-radius: 1.2rem;
+    background: rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fp-picker-item-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.fp-picker-item-no-image {
+    font-size: 1rem;
+    color: #999;
+}
+
+.fp-picker-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.fp-picker-item-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #16323a;
+    line-height: 1.3;
+}
+
+.fp-picker-item-meta {
+    margin-top: 0.4rem;
+    font-size: 1.4rem;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+/* ============================================
+   Responsive - Mobile
+   ============================================ */
+
+@media (max-width: 768px) {
+    .fp-modal-body {
+        flex-direction: column;
+    }
+
+    .fp-unit-section-left {
+        border-right: none;
+        border-bottom: 2px solid #e5e5e5;
+    }
+
+    .fp-unit-header {
+        gap: 1.5rem;
+        padding: 1.2rem 1.5rem;
+    }
+
+    .fp-unit-keyplan {
+        width: 8rem;
+        height: 8rem;
+    }
+
+    .fp-unit-name {
+        font-size: 1.6rem;
+    }
+
+    .fp-unit-sizes,
+    .fp-unit-bedbath {
+        font-size: 1.2rem;
+    }
+
+    .fp-modal-footer {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.2rem;
+    }
+
+    .fp-footer-center {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .fp-compare-others-btn {
+        padding: 0.8rem 2rem;
+        font-size: 1.2rem;
+    }
+
+    .fp-picker-modal {
+        max-width: 100%;
+    }
+}
